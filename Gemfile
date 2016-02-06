@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'pry'
 gem 'twitter'
+gem 'mysql2-cs-bind'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
