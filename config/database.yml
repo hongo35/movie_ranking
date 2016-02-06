@@ -11,22 +11,23 @@
 #
 default: &default
   adapter: mysql2
+  host: sakura
   encoding: utf8
   pool: 5
-  username: root
-  password:
+  username: hongo35
+  password: blAU6821
   socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: movie_ranking_development
+  database: movie_ranking
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: movie_ranking_test
+  database: movie_ranking
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +50,6 @@ test:
 #
 production:
   <<: *default
-  database: movie_ranking_production
-  username: movie_ranking
+  database: movie_ranking
+  username: hongo35
   password: <%= ENV['MOVIE_RANKING_DATABASE_PASSWORD'] %>
