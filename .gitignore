@@ -17,3 +17,5 @@
 /config/deploy.rb
 /config/deploy/*
 Capfile
+
+/bower_components

@@ -1,0 +1,7 @@
+<div class='row'>
+	<% @res.each do |r| %>
+	<div class='col-lg-6'>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= r['vid'] %>" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<% end %>
+</div>
