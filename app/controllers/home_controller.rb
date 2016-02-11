@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     client = Mysql2::Client.new(config[Rails.env])
 
     @res = []
-    client.xquery("SELECT url,count(id) AS cnt FROM tw_data_#{(Time.now - 1.days).strftime('%Y%m%d')} WHERE url != '' GROUP BY url ORDER BY cnt DESC LIMIT 10").each do |r|
+    client.xquery("SELECT url,count(id) AS cnt FROM tw_data_#{Time.now.strftime('%Y%m%d')} WHERE url != '' AND rt_id = 0 GROUP BY url ORDER BY cnt DESC LIMIT 10").each do |r|
       @res << {
         'url' => r['url'],
         'vid' => r['url'].split(/\//)[3],

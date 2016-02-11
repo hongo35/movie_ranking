@@ -8,19 +8,21 @@ namespace :crawl do
 
     tweets = client.search('youtu.be', lang: 'ja').take(100)
     tweets.each do |t|
+      tweet_ts = t.created_at + 9.hours
+
       id  = t.id
       uid = t.user.id
       user_name       = t.user.screen_name
       nickname        = t.user.name
       # profile_img_url = t.user.profile_image_url
       body            = t.text
-      ts              = t.created_at.strftime('%F %T')
-      ts_date         = t.created_at.strftime('%F')
+      ts              = tweet_ts.strftime('%F %T')
+      ts_date         = tweet_ts.strftime('%F')
       tool            = t.source.gsub(/<(".*?"|'.*?'|[^'"])*?>/, '')
       cnt             = t.user.tweets_count
       friend_cnt      = t.user.friends_count
       follower_cnt    = t.user.followers_count
-      table_date      = t.created_at.strftime("%Y%m%d")
+      table_date      = tweet_ts.strftime("%Y%m%d")
 
       expanded_url = ''
       if t.attrs[:entities][:urls].length > 0
