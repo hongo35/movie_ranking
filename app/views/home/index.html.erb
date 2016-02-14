@@ -1,7 +1,17 @@
 <div class='row'>
-	<% @res.each do |r| %>
-	<div class='col-lg-6'>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= r['vid'] %>" frameborder="0" allowfullscreen></iframe>
-	</div>
-	<% end %>
+	<table id='videoRankingTable' class='table table-bordered table-condensed table-hover'>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<% @res.each_with_index do |r, i| %>
+		<tr>
+			<td></td>
+			<td class='img'><%= image_tag "https://i.ytimg.com/vi/#{r['vid']}/maxresdefault.jpg" %></td>
+			<td><%= @info[r['vid']].nil? ? '' : @info[r['vid']]['title'].truncate(30, omission: '...') %></td>
+		</tr>
+		<% end %>
+	</table>
+	<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/<%#= r['vid'] %>" frameborder="0" allowfullscreen></iframe>-->
 </div>

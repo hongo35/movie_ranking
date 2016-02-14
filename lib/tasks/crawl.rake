@@ -1,3 +1,7 @@
+require 'google/api_client'
+require 'google/api_client/client_secrets'
+require 'google/api_client/auth/installed_app'
+
 namespace :crawl do
   desc 'Twitter Search'
   task tw_search: :environment do
@@ -53,6 +57,36 @@ namespace :crawl do
 
       ts = Time.now
       con.xquery("INSERT INTO tw_data_#{table_date}(id,uid,user_name,nickname,body,ts,ts_date,tool,url,rt_id,rt_user_id,rt_cnt,like_cnt,lat,lon,cnt,friend_cnt,follower_cnt, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", id, uid, user_name, nickname, body, ts, ts_date, tool, expanded_url, rt_id, rt_user_id, rt_cnt, like_cnt, lat, lon, cnt, friend_cnt, follower_cnt, ts, ts)
+    end
+  end
+
+  desc 'get movie info'
+  task movie_info: :environment do
+    config   = YAML::load_file("#{Rails.root}/config/setting.yml")
+    dbconfig = YAML::load_file("#{Rails.root}/config/database.yml")
+    con      = Mysql2::Client.new(dbconfig[Rails.env])
+
+    client = Google::APIClient.new(
+      :application_name => 'youtube',
+      :application_version => '0.0,1'
+    )
+    client.authorization = nil
+    youtube = client.discovered_api('youtube','v3')
+
+    con.xquery("SELECT url,count(id) AS cnt FROM tw_data_#{Time.now.strftime('%Y%m%d')} WHERE url != '' AND rt_id = 0 GROUP BY url ORDER BY cnt DESC LIMIT 10").each do |r|
+      vid = r['url'].split('?')[0].split(/\//)[3]
+
+      res = client.execute :key => config['youtube']['key'], :api_method => youtube.videos.list, :parameters => {:id => vid, :part => 'snippet, statistics'}
+      json = Oj.load(res.response.body)
+
+      view_cnt = json['items'][0]['statistics']['viewCount'].nil? ? 0 : json['items'][0]['statistics']['viewCount']
+      comment_cnt = json['items'][0]['statistics']['commentCount'].nil? ? 0 : json['items'][0]['statistics']['commentCount']
+      like_cnt = json['items'][0]['statistics']['likeCount'].nil? ? 0 : json['items'][0]['statistics']['likeCount']
+      dislike_cnt = json['items'][0]['statistics']['dislikeCount'].nil? ? 0 : json['items'][0]['statistics']['dislikeCount']
+      fav_cnt = json['items'][0]['statistics']['favoriteCount'].nil? ? 0 : json['items'][0]['statistics']['favoriteCount']
+
+      ts = Time.now
+      con.xquery('INSERT INTO videos(vid, title, channel, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE view_cnt = ?, like_cnt = ?, dislike_cnt = ?, fav_cnt = ?, comment_cnt = ?, updated_at = ?', vid, json['items'][0]['snippet']['title'], json['items'][0]['snippet']['channelId'], view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, ts, ts, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, ts)
     end
   end
 end
