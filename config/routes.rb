@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :home
+  resources :home do
+    collection do
+      get 'video'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

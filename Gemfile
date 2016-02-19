@@ -37,6 +37,7 @@ gem 'twitter'
 gem 'mysql2-cs-bind'
 gem 'google-api-client', '0.8.2', require: 'google/api_client'
 gem 'oj'
+gem 'nokogiri'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

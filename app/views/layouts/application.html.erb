@@ -5,20 +5,33 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag '/js/bootstrap.min' %>
+  <%= javascript_include_tag '/js/bootstrap-datepicker' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<div id='wrapper'>
 		<div id='header' class='container-fluid'>
+			<h3>YouTube トレンド動画</h3>
 		</div>
 
 		<hr />
 
-		<div id='contents' class='container-fluid'>
-			<%= yield %>
+		<div id='contentsWrapper'>
+			<div id='contents' class='container-fluid'>
+				<%= yield %>
+			</div>
 		</div>
 
-		<div id='footer' class='container-fluid'></div>
+		<div id='footer'>
+			<div class="container">
+				<div>
+					<ul class='list-inline'>
+						<li><a href='#'>サンプル1</a></li>
+						<li><a href='#'>サンプル2</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

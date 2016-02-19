@@ -1,17 +1,52 @@
+<%= javascript_tag do %>
+$(function(){
+	$('.datepicker').datepicker({
+		format: 'yyyy-mm-dd',
+		language: 'ja'
+	});
+});
+<% end %>
+
+
 <div class='row'>
-	<table id='videoRankingTable' class='table table-bordered table-condensed table-hover'>
-		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-		<% @res.each_with_index do |r, i| %>
-		<tr>
-			<td></td>
-			<td class='img'><%= image_tag "https://i.ytimg.com/vi/#{r['vid']}/maxresdefault.jpg" %></td>
-			<td><%= @info[r['vid']].nil? ? '' : @info[r['vid']]['title'].truncate(30, omission: '...') %></td>
-		</tr>
-		<% end %>
-	</table>
-	<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/<%#= r['vid'] %>" frameborder="0" allowfullscreen></iframe>-->
+	<div id='trendCalendar' class='col-lg-12'>
+		<div class='calendar'>
+			<%= form_tag('/', enforce_utf8: false, method: 'GET') do %>
+			<input type="text" name='date' value='<%= @date %>' class="datepicker" />
+			<%= submit_tag('検索', name: nil, class: 'btn btn-primary') %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='background-block'></div>
+</div>
+
+<div class='row'>
+	<div id='trendVideoHeader' class='col-lg-12'>
+		<h4><%= @date_format %>に話題の動画</h4>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='background-block'></div>
+</div>
+
+<div class='row'>
+	<div id='trendVideoList' class='col-lg-12'>
+		<ul>
+			<% @res.each do |r| %>
+			<li>
+				<div class='yt-img'><%= link_to image_tag("http://i.ytimg.com/vi_webp/#{r['vid']}/mqdefault.webp"), action: 'video', vid: r['vid'], date: @date %></div>
+				<div class='yt-info'>
+					<h3><%= link_to r['title'].truncate(50, omission: '...'), action: 'video', vid: r['vid'], date: @date %></h3>
+					<div class='view-cnt'>視聴回数: <%= number_with_delimiter(r['view_cnt']) %> 回</div>
+					<div>高く評価: <%= number_with_delimiter(r['like_cnt']) %> 低く評価: <%= number_with_delimiter(r['dislike_cnt']) %></div>
+				</div>
+				<div class='clearfix'></div>
+			</li>
+			<% end %>
+		</ul>
+	</div>
 </div>

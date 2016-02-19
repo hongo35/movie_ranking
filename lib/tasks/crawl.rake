@@ -1,6 +1,7 @@
 require 'google/api_client'
 require 'google/api_client/client_secrets'
 require 'google/api_client/auth/installed_app'
+require 'open-uri'
 
 namespace :crawl do
   desc 'Twitter Search'
@@ -87,6 +88,48 @@ namespace :crawl do
 
       ts = Time.now
       con.xquery('INSERT INTO videos(vid, title, channel, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE view_cnt = ?, like_cnt = ?, dislike_cnt = ?, fav_cnt = ?, comment_cnt = ?, updated_at = ?', vid, json['items'][0]['snippet']['title'], json['items'][0]['snippet']['channelId'], view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, ts, ts, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, ts)
+    end
+  end
+
+  desc 'get youtube trend'
+  task youtube_trend: :environment do
+    vids = []
+
+    url = 'https://www.youtube.com/feed/trending'
+    page = open(url)
+    html = Nokogiri::HTML(page.read, nil)
+
+    list = html.search('ul.expanded-shelf-content-list > li')
+    list.each do |li|
+      href = li.search('div.expanded-shelf-content-item > div.yt-lockup > div.yt-lockup-dismissable > div.yt-lockup-thumbnail > a').attribute('href').to_s
+
+      vids << href.split('=')[1]
+    end
+
+    config   = YAML::load_file("#{Rails.root}/config/setting.yml")
+    dbconfig = YAML::load_file("#{Rails.root}/config/database.yml")
+    con      = Mysql2::Client.new(dbconfig[Rails.env])
+
+    client = Google::APIClient.new(
+      :application_name => 'youtube',
+      :application_version => '0.0,1'
+    )
+    client.authorization = nil
+    youtube = client.discovered_api('youtube','v3')
+
+    vids.each do |vid|
+      res = client.execute :key => config['youtube']['key'], :api_method => youtube.videos.list, :parameters => {:id => vid, :part => 'snippet, statistics'}
+      json = Oj.load(res.response.body)
+
+      view_cnt = json['items'][0]['statistics']['viewCount'].nil? ? 0 : json['items'][0]['statistics']['viewCount']
+      comment_cnt = json['items'][0]['statistics']['commentCount'].nil? ? 0 : json['items'][0]['statistics']['commentCount']
+      like_cnt = json['items'][0]['statistics']['likeCount'].nil? ? 0 : json['items'][0]['statistics']['likeCount']
+      dislike_cnt = json['items'][0]['statistics']['dislikeCount'].nil? ? 0 : json['items'][0]['statistics']['dislikeCount']
+      fav_cnt = json['items'][0]['statistics']['favoriteCount'].nil? ? 0 : json['items'][0]['statistics']['favoriteCount']
+
+      ts   = Time.now
+      date = ts.strftime('%F')
+      con.xquery('INSERT INTO trend_videos(vid, title, channel, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, trend_date, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)', vid, json['items'][0]['snippet']['title'], json['items'][0]['snippet']['channelId'], view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, date, ts, ts)
     end
   end
 end

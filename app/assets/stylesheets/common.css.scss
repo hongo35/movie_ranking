@@ -5,7 +5,26 @@ hr {
 #wrapper {
 	min-width: 946px;
 }
-#header, #contents, #footer {
+#contentsWrapper {
+	padding: 15px;
+	background-color: #f5f5f5;
+}
+#header, #contents {
 	max-width: 1248px;
 	margin: auto;
+}
+#contents {
+	background-color: #fff;
+}
+#footer {
+	background-color: #111;
+	padding-top: 10px;
+	a {
+		color: #ddd;
+	}
+}
+.list-inline {
+	padding-left: 0;
+	margin-left: -5px;
+	list-style: none;
 }
