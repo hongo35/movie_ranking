@@ -1,3 +1,6 @@
+#trendAlert {
+	margin-bottom: 0;
+}
 #trendCalendar {
 	background-color: #f5f5f5;
 	.calendar {
@@ -15,6 +18,9 @@
 #trendVideoHeader {
 	text-align: center;
 	border: solid 1px #ddd;
+	h3 {
+		margin-top: 10px;
+	}
 }
 .background-block {
 	width: 100%;
@@ -52,6 +58,12 @@
 				div.view-cnt {
 					margin: 7px 0;
 				}
+			}
+		}
+		li.novideo {
+			text-align: center;
+			p {
+				font-size: 16px;
 			}
 		}
 	}

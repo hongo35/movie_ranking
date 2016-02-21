@@ -20,6 +20,8 @@ class HomeController < ApplicationController
     end
 
     @date_format = Time.parse(@date).strftime('%Y年%m月%d日')
+  rescue
+    @date_format = '------'
   end
 
   def video
@@ -36,5 +38,10 @@ class HomeController < ApplicationController
       @info['like_cnt'] = r['like_cnt']
       @info['dislike_cnt'] = r['dislike_cnt']
     end
+
+    @date_format = Time.parse(@date).strftime('%m月%d日')
+  end
+
+  def about
   end
 end

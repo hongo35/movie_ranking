@@ -1,4 +1,22 @@
 <div class='row'>
+	<div class='col-lg-12'>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- xtrend_video -->
+	<ins class="adsbygoogle"
+	style="display:inline-block;width:728px;height:90px"
+	data-ad-client="ca-pub-3968745432449409"
+	data-ad-slot="3706775574"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='background-block'></div>
+</div>
+
+<div class='row'>
 	<div id='trendVideo'>
 		<div class='video col-lg-6'>
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @vid %>" frameborder="0" allowfullscreen></iframe>
@@ -8,6 +26,10 @@
 			<div class='view-cnt'>視聴回数: <%= number_with_delimiter(@info['view_cnt']) %> 回</div>
 			<div class='eval'>高く評価: <%= number_with_delimiter(@info['like_cnt']) %><br />低く評価: <%= number_with_delimiter(@info['dislike_cnt']) %></div>
 			<div class='clearfix'></div>
+			<div>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= @date_format %>のトレンド動画 「<%= @info['title'].truncate(30, omission: '...') %>」" data-size="large" data-hashtags="YouTubeトレンド">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			</div>
 		</div>
 	</div>
 </div>

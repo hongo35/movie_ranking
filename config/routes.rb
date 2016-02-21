@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :home do
     collection do
       get 'video'
+      get 'about'
     end
   end
 
