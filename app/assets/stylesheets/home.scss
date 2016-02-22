@@ -1,5 +1,9 @@
 #trendAlert {
+	background-color: #03a9f4;
 	margin-bottom: 0;
+	p {
+		color: #fff;
+	}
 }
 #trendCalendar {
 	background-color: #f5f5f5;
@@ -74,6 +78,9 @@
 		text-align: center
 	}
 	.info {
+		h3 {
+			margin-top: 0;
+		}
 		div {
 			color: #767676;
 			font-size: 18px;
@@ -86,7 +93,13 @@
 			float: right;
 			margin: 7px 30px 7px 0;
 		}
+		div.linkYouTube {
+			margin: 10px 0;
+		}
 	}
+}
+#trendVideoAd {
+	text-align: center;
 }
 .clearfix {
 	clear: both;

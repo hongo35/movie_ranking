@@ -40,6 +40,8 @@ class HomeController < ApplicationController
     end
 
     @date_format = Time.parse(@date).strftime('%m月%d日')
+  rescue
+    @info = {}
   end
 
   def about

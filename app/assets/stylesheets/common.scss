@@ -13,6 +13,29 @@ hr {
 	max-width: 1248px;
 	margin: auto;
 }
+#header {
+	h3 {
+		float: left;
+		margin-bottom: 20px;
+		a {
+			color: #333;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+	#shareButtons {
+		float: right;
+		margin-top: 23px;
+		ul {
+			li {
+				list-style-type: none;
+				float: left;
+				margin-left: 10px;
+			}
+		}
+	}
+}
 #contents {
 	background-color: #fff;
 }

@@ -1,15 +1,11 @@
 application = 'movie_ranking'
 
 worker_processes 2
-working_directory "/var/www/html/#{application}"
+timeout 60
+preload_app true
 
 listen "/var/run/unicorn/unicorn_#{application}.sock"
-
 pid "/var/run/unicorn/unicorn_#{application}.pid"
-
-timeout 60
-
-preload_app true
 
 stdout_path "/var/log/unicorn/unicorn.stdout_#{application}.log"  # 標準出力ログ出力先
 stderr_path "/var/log/unicorn/unicorn.stderr_#{application}.log"  # 標準エラー出力ログ出力先
