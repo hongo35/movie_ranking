@@ -121,6 +121,10 @@ namespace :crawl do
       res = client.execute :key => config['youtube']['key'], :api_method => youtube.videos.list, :parameters => {:id => vid, :part => 'snippet, statistics'}
       json = Oj.load(res.response.body)
 
+      channel_title = json['items'][0]['snippet']['channelTitle'].nil? ? '' : json['items'][0]['snippet']['channelTitle']
+      category_id = json['items'][0]['snippet']['categoryId'].nil? ? 0 : json['items'][0]['snippet']['categoryId']
+      tags = json['items'][0]['snippet']['tags'].nil? ? '' : json['items'][0]['snippet']['tags'].join(' ')
+
       view_cnt = json['items'][0]['statistics']['viewCount'].nil? ? 0 : json['items'][0]['statistics']['viewCount']
       comment_cnt = json['items'][0]['statistics']['commentCount'].nil? ? 0 : json['items'][0]['statistics']['commentCount']
       like_cnt = json['items'][0]['statistics']['likeCount'].nil? ? 0 : json['items'][0]['statistics']['likeCount']
@@ -129,7 +133,7 @@ namespace :crawl do
 
       ts   = Time.now
       date = ts.strftime('%F')
-      con.xquery('INSERT INTO trend_videos(vid, title, channel, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, trend_date, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)', vid, json['items'][0]['snippet']['title'], json['items'][0]['snippet']['channelId'], view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, date, ts, ts)
+      con.xquery('INSERT INTO trend_videos(vid, title, channel, channel_title, category_id, tags, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, trend_date, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', vid, json['items'][0]['snippet']['title'], json['items'][0]['snippet']['channelId'], channel_title, category_id, tags, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, date, ts, ts)
     end
   end
 end
