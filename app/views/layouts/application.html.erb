@@ -2,6 +2,15 @@
 <html lang='ja'>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <title>YouTube トレンド動画</title>
+  <meta name='description' content='YouTubeで話題の動画を検索・視聴することが可能です。アニメ、ドラマ、バラエティなどさまざまなジャンルの動画をまとめて楽しむことができます。' />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= request.url %>" />
+  <!--<meta property="og:image" content="" />-->
+  <meta property="og:title" content="YouTube トレンド動画" />
+  <meta property="og:description" content="YouTubeで話題の動画を検索・視聴することが可能です。アニメ、ドラマ、バラエティなどさまざまなジャンルの動画をまとめて楽しむことができます。" />
+  <meta property="og:site_name" content="YouTube トレンド動画" />
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag '/js/bootstrap.min' %>

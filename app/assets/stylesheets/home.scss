@@ -1,3 +1,6 @@
+#trendTopAd {
+	border: solid 1px #ddd;
+}
 #trendAlert {
 	background-color: #03a9f4;
 	margin-bottom: 0;
@@ -59,8 +62,11 @@
 				div {
 					color: #767676;
 				}
-				div.view-cnt {
-					margin: 7px 0;
+				div.channel {
+					margin: 10px 0;
+					span.title {
+						margin-right: 15px;
+					}
 				}
 			}
 		}

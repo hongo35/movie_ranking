@@ -8,14 +8,15 @@ class HomeController < ApplicationController
     @res = []
     client.xquery("SELECT * FROM trend_videos WHERE trend_date = ?", @date).each do |v|
       @res << {
-        'vid'         => v['vid'],
-        'title'       => v['title'],
-        'channel'     => v['channel'],
-        'view_cnt'    => v['view_cnt'],
-        'like_cnt'    => v['like_cnt'],
-        'dislike_cnt' => v['dislike_cnt'],
-        'fav_cnt'     => v['fav_cnt'],
-        'comment_cnt' => v['comment_cnt']
+        'vid'           => v['vid'],
+        'title'         => v['title'],
+        'channel'       => v['channel'],
+        'channel_title' => v['channel_title'],
+        'view_cnt'      => v['view_cnt'],
+        'like_cnt'      => v['like_cnt'],
+        'dislike_cnt'   => v['dislike_cnt'],
+        'fav_cnt'       => v['fav_cnt'],
+        'comment_cnt'   => v['comment_cnt']
       }
     end
 
