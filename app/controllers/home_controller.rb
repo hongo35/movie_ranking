@@ -45,6 +45,15 @@ class HomeController < ApplicationController
     @info = {}
   end
 
+  def ranking
+    cids = []
+    TrendVideo.select('channel, count(channel) AS cnt').where("trend_date > ?", (Time.now- 10.days).strftime('%F')).group('channel').order('cnt DESC').limit(30).each do |t|
+      cids << t['channel']
+    end
+
+    @res = Channel.where('cid IN (?)', cids).order('view_cnt DESC')
+  end
+
   def about
   end
 end

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223161212) do
+ActiveRecord::Schema.define(version: 20160227123834) do
+
+  create_table "channels", primary_key: "cid", force: :cascade do |t|
+    t.string   "title",          limit: 1023,  null: false
+    t.text     "description",    limit: 65535, null: false
+    t.datetime "published_at",                 null: false
+    t.string   "img_url",        limit: 255,   null: false
+    t.integer  "view_cnt",       limit: 4,     null: false
+    t.integer  "comment_cnt",    limit: 4,     null: false
+    t.integer  "subscriber_cnt", limit: 4,     null: false
+    t.integer  "video_cnt",      limit: 4,     null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "trend_videos", id: false, force: :cascade do |t|
     t.string   "vid",           limit: 255,               null: false
@@ -557,6 +570,102 @@ ActiveRecord::Schema.define(version: 20160223161212) do
   end
 
   add_index "tw_data_20160227", ["url"], name: "index_tw_data_20160227_on_url", length: {"url"=>333}, using: :btree
+
+  create_table "tw_data_20160228", force: :cascade do |t|
+    t.integer  "uid",          limit: 8,     null: false
+    t.string   "user_name",    limit: 255,   null: false
+    t.string   "nickname",     limit: 255,   null: false
+    t.binary   "body",         limit: 65535, null: false
+    t.datetime "ts",                         null: false
+    t.date     "ts_date",                    null: false
+    t.string   "tool",         limit: 255,   null: false
+    t.string   "url",          limit: 1023,  null: false
+    t.integer  "rt_id",        limit: 8,     null: false
+    t.integer  "rt_user_id",   limit: 8,     null: false
+    t.integer  "rt_cnt",       limit: 4,     null: false
+    t.integer  "like_cnt",     limit: 4,     null: false
+    t.float    "lat",          limit: 24,    null: false
+    t.float    "lon",          limit: 24,    null: false
+    t.integer  "cnt",          limit: 4,     null: false
+    t.integer  "friend_cnt",   limit: 4,     null: false
+    t.integer  "follower_cnt", limit: 4,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tw_data_20160228", ["url"], name: "index_tw_data_20160228_on_url", length: {"url"=>333}, using: :btree
+
+  create_table "tw_data_20160229", force: :cascade do |t|
+    t.integer  "uid",          limit: 8,     null: false
+    t.string   "user_name",    limit: 255,   null: false
+    t.string   "nickname",     limit: 255,   null: false
+    t.binary   "body",         limit: 65535, null: false
+    t.datetime "ts",                         null: false
+    t.date     "ts_date",                    null: false
+    t.string   "tool",         limit: 255,   null: false
+    t.string   "url",          limit: 1023,  null: false
+    t.integer  "rt_id",        limit: 8,     null: false
+    t.integer  "rt_user_id",   limit: 8,     null: false
+    t.integer  "rt_cnt",       limit: 4,     null: false
+    t.integer  "like_cnt",     limit: 4,     null: false
+    t.float    "lat",          limit: 24,    null: false
+    t.float    "lon",          limit: 24,    null: false
+    t.integer  "cnt",          limit: 4,     null: false
+    t.integer  "friend_cnt",   limit: 4,     null: false
+    t.integer  "follower_cnt", limit: 4,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tw_data_20160229", ["url"], name: "index_tw_data_20160229_on_url", length: {"url"=>333}, using: :btree
+
+  create_table "tw_data_20160301", force: :cascade do |t|
+    t.integer  "uid",          limit: 8,     null: false
+    t.string   "user_name",    limit: 255,   null: false
+    t.string   "nickname",     limit: 255,   null: false
+    t.binary   "body",         limit: 65535, null: false
+    t.datetime "ts",                         null: false
+    t.date     "ts_date",                    null: false
+    t.string   "tool",         limit: 255,   null: false
+    t.string   "url",          limit: 1023,  null: false
+    t.integer  "rt_id",        limit: 8,     null: false
+    t.integer  "rt_user_id",   limit: 8,     null: false
+    t.integer  "rt_cnt",       limit: 4,     null: false
+    t.integer  "like_cnt",     limit: 4,     null: false
+    t.float    "lat",          limit: 24,    null: false
+    t.float    "lon",          limit: 24,    null: false
+    t.integer  "cnt",          limit: 4,     null: false
+    t.integer  "friend_cnt",   limit: 4,     null: false
+    t.integer  "follower_cnt", limit: 4,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tw_data_20160301", ["url"], name: "index_tw_data_20160301_on_url", length: {"url"=>333}, using: :btree
+
+  create_table "tw_data_20160302", force: :cascade do |t|
+    t.integer  "uid",          limit: 8,     null: false
+    t.string   "user_name",    limit: 255,   null: false
+    t.string   "nickname",     limit: 255,   null: false
+    t.binary   "body",         limit: 65535, null: false
+    t.datetime "ts",                         null: false
+    t.date     "ts_date",                    null: false
+    t.string   "tool",         limit: 255,   null: false
+    t.string   "url",          limit: 1023,  null: false
+    t.integer  "rt_id",        limit: 8,     null: false
+    t.integer  "rt_user_id",   limit: 8,     null: false
+    t.integer  "rt_cnt",       limit: 4,     null: false
+    t.integer  "like_cnt",     limit: 4,     null: false
+    t.float    "lat",          limit: 24,    null: false
+    t.float    "lon",          limit: 24,    null: false
+    t.integer  "cnt",          limit: 4,     null: false
+    t.integer  "friend_cnt",   limit: 4,     null: false
+    t.integer  "follower_cnt", limit: 4,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tw_data_20160302", ["url"], name: "index_tw_data_20160302_on_url", length: {"url"=>333}, using: :btree
 
   create_table "videos", primary_key: "vid", force: :cascade do |t|
     t.string   "title",       limit: 1023, null: false

@@ -1,0 +1,53 @@
+<div class='row'>
+	<div id='trendTopAd' class='col-lg-12'>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- xtrend_top -->
+		<ins class="adsbygoogle"
+		style="display:inline-block;width:1200px;height:90px"
+		data-ad-client="ca-pub-3968745432449409"
+		data-ad-slot="1622449970"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='background-block'></div>
+</div>
+
+<div class='row'>
+	<div class='col-lg-12 trend-header'>
+		<h3>話題のチャンネル TOP30</h3>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='background-block'></div>
+</div>
+
+<div class='row'>
+	<div id='trendChannels' class='col-lg-12'>
+		<table class='table table-bordered table-condensed'>
+			<tr>
+				<th></th>
+				<th>チャンネル</th>
+				<th>視聴回数</th>
+				<th>チャンネル登録者</th>
+				<th>動画数</th>
+			</tr>
+			<% @res.each do |r| %>
+			<tr>
+				<td class='img'><%= link_to image_tag(r['img_url']), "https://www.youtube.com/channel/#{r['cid']}", target: '_blank' %></td>
+				<td class='channel-info'>
+					<h4><%= link_to r['title'], "https://www.youtube.com/channel/#{r['cid']}", target: '_blank' %></h4>
+					<p><%= r['description'] %></p>
+				</td>
+				<td class='cnt'><%= number_with_delimiter(r['view_cnt']) %></td>
+				<td class='cnt'><%= number_with_delimiter(r['subscriber_cnt']) %></td>
+				<td class='cnt'><%= number_with_delimiter(r['video_cnt']) %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

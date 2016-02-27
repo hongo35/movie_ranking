@@ -2,7 +2,7 @@
 	border: solid 1px #ddd;
 }
 #trendAlert {
-	background-color: #03a9f4;
+	background-color: #48a322;
 	margin-bottom: 0;
 	p {
 		color: #fff;
@@ -22,7 +22,7 @@
 		}
 	}
 }
-#trendVideoHeader {
+.trend-header {
 	text-align: center;
 	border: solid 1px #ddd;
 	h3 {
@@ -106,6 +106,29 @@
 }
 #trendVideoAd {
 	text-align: center;
+}
+#trendChannels {
+	padding: 0;
+	table {
+		th {
+			text-align: center;
+		}
+		td.img {
+			img {
+				width: 80px;
+				height: 80px;
+			}
+		}
+		td.channel-info {
+			h4 {
+				margin-top: 0;
+			}
+		}
+		td.cnt {
+			width: 10%;
+			text-align: right;
+		}
+	}
 }
 .clearfix {
 	clear: both;

@@ -43,7 +43,27 @@
 			</div>
 		</div>
 
-		<hr />
+		<div id='menu'>
+			<div class='container'>
+				<div class='row'>
+					<ul class='menu-list'>
+						<% if controller.action_name == 'index' || controller.action_name == 'video' %>
+						<li class='current'>
+						<% else %>
+						<li>
+						<% end %>
+						<%= link_to 'HOME', root_path %></li>
+
+						<% if controller.action_name == 'ranking' %>
+						<li class='current'>
+						<% else %>
+						<li>
+						<% end %>
+						<%= link_to '話題のチャンネルランキング', ranking_home_index_path %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
 		<div id='contentsWrapper'>
 			<div id='contents' class='container-fluid'>
