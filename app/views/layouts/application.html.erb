@@ -3,6 +3,7 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <title>YouTube トレンド動画</title>
   <meta name='description' content='YouTubeで話題の動画を検索・視聴することが可能です。アニメ、ドラマ、バラエティなどさまざまなジャンルの動画をまとめて楽しむことができます。' />
+  <meta name="viewport" content="width=device-width">
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<%= request.url %>" />
@@ -31,7 +32,7 @@
 
 	<div id='wrapper'>
 		<div id='header' class='container-fluid'>
-			<h3><%= link_to 'YouTube トレンド動画', root_path %></h3>
+			<%= link_to image_tag('logo.png'), root_path %>
 			<div id='shareButtons'>
 				<ul>
 					<li><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://xtrend.tokyo/" data-text="YouTube トレンド動画" data-hashtags="YouTubeトレンド">Tweet</a>

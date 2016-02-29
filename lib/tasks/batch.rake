@@ -1,3 +1,5 @@
+require 'net/http'
+
 namespace :batch do
   desc 'channels'
   task youtube_channel: :environment do
@@ -29,6 +31,15 @@ namespace :batch do
       con.xquery("INSERT INTO channels(cid, title, description, published_at, img_url, view_cnt, comment_cnt, subscriber_cnt, video_cnt, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE view_cnt = ?, comment_cnt = ?, subscriber_cnt = ?, video_cnt = ?, updated_at = ?", r['channel'], title, description, Time.parse(published_at).getlocal, img_url, view_cnt, comment_cnt, subscriber_cnt, video_cnt, ts, ts, view_cnt, comment_cnt, subscriber_cnt, video_cnt, ts)
 
       sleep(1)
+    end
+  end
+
+  desc 'download'
+  task youtube_download: :environment do
+    TrendVideo.select('vid').where('trend_date = ?', Time.now.strftime('%F')).limit(2).each do |v|
+      # system("/usr/local/bin/youtube-dl -f 5 -o #{Rails.root}/tmp/videos/#{v['vid']}.flv https://www.youtube.com/watch?v=#{v['vid']}")
+      system("/usr/local/bin/ffmpeg -i #{Rails.root}/tmp/videos/#{v['vid']}.flv #{Rails.root}/tmp/videos/#{v['vid']}.wav")
+      system("rm #{Rails.root}/tmp/videos/#{v['vid']}.flv")
     end
   end
 end
