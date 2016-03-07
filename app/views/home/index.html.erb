@@ -17,13 +17,27 @@ $(function(){
 	<div class='background-block'></div>
 </div>
 
+<!--
 <div id='trendCalendar' class='row'>
 	<div class='calendar'>
-		<%= form_tag('/', enforce_utf8: false, method: 'GET') do %>
-		<input type="text" name='date' value='<%= @date %>' class="datepicker" />
-		<%= submit_tag('検索', name: nil, class: 'btn btn-primary') %>
-		<% end %>
+		<%#= form_tag('/', enforce_utf8: false, method: 'GET') do %>
+		<input type="text" name='date' value='<%#= @date %>' class="datepicker" />
+		<%#= submit_tag('検索', name: nil, class: 'btn btn-primary') %>
+		<%# end %>
 	</div>
+</div>
+-->
+
+<div id='timeButton' class='row'>
+	<ul>
+		<li class='prev-time-button'>
+			<%= link_to '< 1日前', root_path(date: (Time.parse(@date) - 1.days).strftime('%F')) %>
+		</li>
+		<li class='next-time-button'>
+			<%= link_to '1日後 >', root_path(date: (Time.parse(@date) + 1.days).strftime('%F')) %>
+		</li>
+		<div class='clearfix'></div>
+	</ul>
 </div>
 
 <div class='row'>
