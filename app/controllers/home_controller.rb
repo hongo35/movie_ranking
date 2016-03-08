@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
   def index
-    @date = params['date'].presence || Time.now.strftime('%F')
+    h = Time.now.strftime('%H').to_i
+    if h < 2
+      @date = params['date'].presence || (Time.now - 1.days).strftime('%F')
+    else
+      @date = params['date'].presence || Time.now.strftime('%F')
+    end
 
     config = YAML::load_file("#{Rails.root}/config/database.yml")
     client = Mysql2::Client.new(config[Rails.env])
