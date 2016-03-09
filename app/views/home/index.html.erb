@@ -60,7 +60,7 @@ $(function(){
 			<% unless @res.blank? %>
 			<% @res.each do |r| %>
 			<li>
-				<div class='yt-img'><%= link_to image_tag("http://i.ytimg.com/vi_webp/#{r['vid']}/mqdefault.webp"), action: 'video', vid: r['vid'], date: @date %></div>
+				<div class='yt-img'><%= link_to image_tag("http://i.ytimg.com/vi/#{r['vid']}/default.jpg"), action: 'video', vid: r['vid'], date: @date %></div>
 				<div class='yt-info'>
 					<h3><%= link_to r['title'].truncate(50, omission: '...'), action: 'video', vid: r['vid'], date: @date %></h3>
 					<div class='channel'>
