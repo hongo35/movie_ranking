@@ -13,6 +13,9 @@ hr {
 #header {
 	padding-left: 0;
 	padding-right: 0;
+	a img {
+		width: 360px;
+	}
 	h3 {
 		float: left;
 		margin-bottom: 20px;
@@ -44,9 +47,8 @@ hr {
 			list-style: none;
 			li {
 				float: left;
-				height: 35px;
-				width: 200px;
-				line-height: 35px;
+				padding: 10px;
+				width: 20%;
 				text-align: center;
 				a {
 					color: #ccc;
