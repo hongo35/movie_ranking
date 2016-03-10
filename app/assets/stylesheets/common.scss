@@ -13,8 +13,10 @@ hr {
 #header {
 	padding-left: 0;
 	padding-right: 0;
-	a img {
-		width: 360px;
+	@media screen and (max-width: 480px) {
+		a img {
+			width: 100%;
+		}
 	}
 	h3 {
 		float: left;
@@ -29,6 +31,9 @@ hr {
 	#shareButtons {
 		float: right;
 		margin-top: 35px;
+		@media screen and (max-width: 480px) {
+			width: 100%;
+		}
 		ul {
 			li {
 				list-style-type: none;
@@ -49,6 +54,9 @@ hr {
 				float: left;
 				padding: 10px;
 				width: 20%;
+				@media screen and (max-width: 480px) {
+					width: 100%;
+				}
 				text-align: center;
 				a {
 					color: #ccc;
