@@ -136,4 +136,38 @@ namespace :crawl do
       con.xquery('INSERT INTO trend_videos(vid, title, channel, channel_title, category_id, tags, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, trend_date, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', vid, json['items'][0]['snippet']['title'], json['items'][0]['snippet']['channelId'], channel_title, category_id, tags, view_cnt, like_cnt, dislike_cnt, fav_cnt, comment_cnt, date, ts, ts)
     end
   end
+
+  desc 'get twicas trend'
+  task twicas_trend: :environment do
+    config = YAML::load_file("#{Rails.root}/config/database.yml")
+    client = Mysql2::Client.new(config[Rails.env])
+
+    begin
+      url = 'http://api.twitcasting.tv/api/hotlist?lang=ja&type=json&count=100'
+
+      page = open(url)
+      data = Oj.load(page.read, mode: :compat)
+
+      client.xquery('UPDATE twicas SET islive = 0 WHERE islive = 1')
+
+      data.each do |d|
+        mid = d['movieid']
+        uid = d['userid']
+        title = d['title']
+        localized_title = d['localized_title']
+        url = d['link']
+        img_url = d['thumbnail']
+        comment_cnt = d['comment']
+        country = d['country']
+        total_cnt = d['total']
+        broadcasted_at = Time.at(d['created'].to_i)
+
+        if country == 'ja'
+          client.xquery('INSERT INTO twicas(mid,uid,title,localized_title,url,islive,img_url,comment_cnt,total_cnt,broadcasted_at,created_at,updated_at) VALUES(?,?,?,?,?,1,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE islive = 1, comment_cnt = ?, total_cnt = ?, updated_at = ?', mid, uid, title, localized_title, url, img_url, comment_cnt, total_cnt, broadcasted_at, Time.now, Time.now, comment_cnt, total_cnt, Time.now)
+        end
+      end
+    rescue => _e
+      # _e
+    end
+  end
 end
