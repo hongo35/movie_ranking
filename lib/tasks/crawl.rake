@@ -161,9 +161,10 @@ namespace :crawl do
         country = d['country']
         total_cnt = d['total']
         broadcasted_at = Time.at(d['created'].to_i)
+        viewer_cnt = d['viewers'].presence || 0
 
-        if country == 'ja'
-          client.xquery('INSERT INTO twicas(mid,uid,title,localized_title,url,islive,img_url,comment_cnt,total_cnt,broadcasted_at,created_at,updated_at) VALUES(?,?,?,?,?,1,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE islive = 1, comment_cnt = ?, total_cnt = ?, updated_at = ?', mid, uid, title, localized_title, url, img_url, comment_cnt, total_cnt, broadcasted_at, Time.now, Time.now, comment_cnt, total_cnt, Time.now)
+        if country == 'jp'
+          client.xquery('INSERT INTO twicas(mid,uid,title,localized_title,url,islive,img_url,comment_cnt,total_cnt,viewer_cnt,broadcasted_at,created_at,updated_at) VALUES(?,?,?,?,?,1,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE islive = 1, comment_cnt = ?, total_cnt = ?, updated_at = ?', mid, uid, title, localized_title, url, img_url, comment_cnt, total_cnt, viewer_cnt, broadcasted_at, Time.now, Time.now, comment_cnt, total_cnt, Time.now)
         end
       end
     rescue => _e

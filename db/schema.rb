@@ -547,6 +547,54 @@ ActiveRecord::Schema.define(version: 20160314162055) do
 
   add_index "tw_data_20160321", ["url"], name: "index_tw_data_20160321_on_url", length: {"url"=>333}, using: :btree
 
+  create_table "tw_data_20160322", force: :cascade do |t|
+    t.integer  "uid",          limit: 8,     null: false
+    t.string   "user_name",    limit: 255,   null: false
+    t.string   "nickname",     limit: 255,   null: false
+    t.binary   "body",         limit: 65535, null: false
+    t.datetime "ts",                         null: false
+    t.date     "ts_date",                    null: false
+    t.string   "tool",         limit: 255,   null: false
+    t.string   "url",          limit: 1023,  null: false
+    t.integer  "rt_id",        limit: 8,     null: false
+    t.integer  "rt_user_id",   limit: 8,     null: false
+    t.integer  "rt_cnt",       limit: 4,     null: false
+    t.integer  "like_cnt",     limit: 4,     null: false
+    t.float    "lat",          limit: 24,    null: false
+    t.float    "lon",          limit: 24,    null: false
+    t.integer  "cnt",          limit: 4,     null: false
+    t.integer  "friend_cnt",   limit: 4,     null: false
+    t.integer  "follower_cnt", limit: 4,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tw_data_20160322", ["url"], name: "index_tw_data_20160322_on_url", length: {"url"=>333}, using: :btree
+
+  create_table "tw_data_20160323", force: :cascade do |t|
+    t.integer  "uid",          limit: 8,     null: false
+    t.string   "user_name",    limit: 255,   null: false
+    t.string   "nickname",     limit: 255,   null: false
+    t.binary   "body",         limit: 65535, null: false
+    t.datetime "ts",                         null: false
+    t.date     "ts_date",                    null: false
+    t.string   "tool",         limit: 255,   null: false
+    t.string   "url",          limit: 1023,  null: false
+    t.integer  "rt_id",        limit: 8,     null: false
+    t.integer  "rt_user_id",   limit: 8,     null: false
+    t.integer  "rt_cnt",       limit: 4,     null: false
+    t.integer  "like_cnt",     limit: 4,     null: false
+    t.float    "lat",          limit: 24,    null: false
+    t.float    "lon",          limit: 24,    null: false
+    t.integer  "cnt",          limit: 4,     null: false
+    t.integer  "friend_cnt",   limit: 4,     null: false
+    t.integer  "follower_cnt", limit: 4,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tw_data_20160323", ["url"], name: "index_tw_data_20160323_on_url", length: {"url"=>333}, using: :btree
+
   create_table "twicas", primary_key: "mid", force: :cascade do |t|
     t.string   "uid",             limit: 255,  null: false
     t.string   "title",           limit: 1023, null: false
@@ -556,6 +604,7 @@ ActiveRecord::Schema.define(version: 20160314162055) do
     t.string   "img_url",         limit: 1023, null: false
     t.integer  "comment_cnt",     limit: 4,    null: false
     t.integer  "total_cnt",       limit: 4,    null: false
+    t.integer  "viewer_cnt",      limit: 4,    null: false
     t.datetime "broadcasted_at",               null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false

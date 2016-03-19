@@ -10,6 +10,7 @@ class CreateTwicas < ActiveRecord::Migration
       t.string :img_url, null: false, limit: 1023
       t.integer :comment_cnt, null: false
       t.integer :total_cnt, null: false
+      t.integer :viewer_cnt, null: false
       t.datetime :broadcasted_at, null: false
 
       t.timestamps null: false
