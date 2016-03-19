@@ -42,4 +42,16 @@ namespace :batch do
       system("rm #{Rails.root}/tmp/videos/#{v['vid']}.flv")
     end
   end
+
+  desc 'follow'
+  task tw_follow: :environment do
+    config   = YAML::load_file("#{Rails.root}/config/setting.yml")
+    dbconfig = YAML::load_file("#{Rails.root}/config/database.yml")
+    client   = Twitter::REST::Client.new(config['tw'])
+    con      = Mysql2::Client.new(dbconfig[Rails.env])
+
+    con.xquery("SELECT uid FROM tw_data_#{Time.now.strftime('%Y%m%d')} ORDER BY RAND() LIMIT 15").each do |r|
+      client.follow(r['uid'])
+    end
+  end
 end
