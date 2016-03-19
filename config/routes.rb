@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :home do
     collection do
+      get 'twicas'
+      get 'twicas_movie'
       get 'video'
       get 'ranking'
       get 'about'

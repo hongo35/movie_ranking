@@ -168,6 +168,26 @@
 		}
 	}
 }
+.twicas-movie {
+	padding: 10px;
+	height: 140px;
+	.twicas-img {
+		float: left;
+		border: solid 1px #ddd;
+		img {
+			width: 200px;
+		}
+	}
+	.twicas-info {
+		float: left;
+		margin-left: 10px;
+		h3 {
+			margin-top: 10px;
+			color: #007fff;
+			font-size: 20px;
+		}
+	}
+}
 .clearfix {
 	clear: both;
 }

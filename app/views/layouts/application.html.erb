@@ -53,7 +53,15 @@
 						<% else %>
 						<li>
 						<% end %>
-						<%= link_to 'HOME', root_path %></li>
+						<%= link_to 'YouTube', root_path %></li>
+
+						<% if controller.action_name == 'twicas' %>
+						<li class='current'>
+						<% else %>
+						<li>
+						<% end %>
+						<%= link_to 'ツイキャス', twicas_home_index_path %>
+						</li>
 
 						<% if controller.action_name == 'ranking' %>
 						<li class='current'>

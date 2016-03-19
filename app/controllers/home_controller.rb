@@ -30,6 +30,13 @@ class HomeController < ApplicationController
     @date_format = '------'
   end
 
+  def twicas
+    @res = Twicas.where('islive = 1').order('viewer_cnt DESC')
+  end
+
+  def twicas_movie
+  end
+
   def video
     @vid = params[:vid]
     @date = params[:date]
