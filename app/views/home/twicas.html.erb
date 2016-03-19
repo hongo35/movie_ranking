@@ -1,0 +1,19 @@
+<div class='row'>
+	<% unless @res.blank? %>
+	<% @res.each do |r| %>
+	<div class='twicas-movie col-lg-6'>
+		<div class='twicas-img'>
+			<%= link_to image_tag(r['img_url']), action: 'twicas_movie', uid: r['uid'], mid: r['mid'] %>
+		</div>
+		<div class='twicas-info'>
+			<h3><%= link_to r['localized_title'], action: 'twicas_movie', uid: r['uid'], mid: r['mid'] %></h3>
+			<div class='detail'>
+				配信開始: <%= r['broadcasted_at'] %> 
+			</div>
+		</div>
+		<div class='clearfix'></div>
+		<%= r.inspect %>
+	</div>
+	<% end %>
+	<% end %>
+</div>
