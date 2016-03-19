@@ -50,8 +50,21 @@ namespace :batch do
     client   = Twitter::REST::Client.new(config['tw'])
     con      = Mysql2::Client.new(dbconfig[Rails.env])
 
-    con.xquery("SELECT uid FROM tw_data_#{Time.now.strftime('%Y%m%d')} ORDER BY RAND() LIMIT 15").each do |r|
+    con.xquery("SELECT uid FROM tw_data_#{Time.now.strftime('%Y%m%d')} ORDER BY RAND() LIMIT 8").each do |r|
       client.follow(r['uid'])
+    end
+  end
+
+  desc 'tweet'
+  task tweet: :environment do
+    config   = YAML::load_file("#{Rails.root}/config/setting.yml")
+    dbconfig = YAML::load_file("#{Rails.root}/config/database.yml")
+    client   = Twitter::REST::Client.new(config['tw'])
+    con      = Mysql2::Client.new(dbconfig[Rails.env])
+
+    ts = Time.now
+    con.xquery("SELECT vid,title,trend_date FROM trend_videos WHERE trend_date = ? ORDER BY RAND() LIMIT 1", ts.strftime('%F')).each do |r|
+      client.update("#{ts.strftime('%m月%d日')}のトレンド動画 「#{r['title']}」 http://xtrend.tokyo/home/video?date=#{ts.strftime('%F')}&vid=#{r['vid']} #YouTubeトレンド")
     end
   end
 end
