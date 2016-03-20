@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang='ja'>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-  <title>YouTube トレンド動画</title>
-  <meta name='description' content='YouTubeでトレンドになっている動画を検索・視聴することが可能です。評判になっている、アニメ、ドラマ、バラエティなどさまざまなジャンルの動画をまとめて楽しむことができます。' />
+  <title>トレンド動画まとめ</title>
+  <meta name='description' content='今、YouTubeやツイキャスでトレンドになっている動画を検索・視聴することが可能です。評判になっている、アニメ、ドラマ、バラエティなどさまざまなジャンルの動画をまとめて楽しむことができます。' />
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<%= request.url %>" />
   <!--<meta property="og:image" content="" />-->
-  <meta property="og:title" content="YouTube トレンド動画" />
-  <meta property="og:description" content="YouTubeで話題の動画を検索・視聴することが可能です。アニメ、ドラマ、バラエティなどさまざまなジャンルの動画をまとめて楽しむことができます。" />
-  <meta property="og:site_name" content="YouTube トレンド動画" />
+  <meta property="og:title" content="トレンド動画まとめ" />
+  <meta property="og:description" content="今、YouTubeやツイキャスでトレンドになっている動画を検索・視聴することが可能です。評判になっている、アニメ、ドラマ、バラエティなどさまざまなジャンルの動画をまとめて楽しむことができます。" />
+  <meta property="og:site_name" content="トレンド動画まとめ" />
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -54,15 +54,15 @@
 						<li>
 						<% end %>
 						<%= link_to 'YouTube', root_path %></li>
-<!--
-						<%# if controller.action_name == 'twicas' %>
+
+						<% if controller.action_name == 'twicas' %>
 						<li class='current'>
-						<%# else %>
+						<% else %>
 						<li>
-						<%# end %>
-						<%#= link_to 'ツイキャス', twicas_home_index_path %>
+						<% end %>
+						<%= link_to 'ツイキャス', twicas_home_index_path %>
 						</li>
--->
+
 						<% if controller.action_name == 'ranking' %>
 						<li class='current'>
 						<% else %>

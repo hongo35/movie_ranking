@@ -50,6 +50,9 @@
 	border: solid 1px #ddd;
 	h3 {
 		margin-top: 10px;
+		@media screen and (max-width: 480px) {
+			font-size: 20px;
+		}
 	}
 }
 .background-block {
@@ -57,48 +60,47 @@
 	height: 20px;
 	background-color: #f5f5f5;
 }
-#trendVideoList {
-	border: solid 1px #ddd;
-	ul {
-		padding-left: 0;
-		li {
-			list-style-type: none;
-			padding: 5px;
-			.yt-img {
-				float: left;
-				margin-right: 10px;
-				text-align: center;
-				width: 170px;
-				img {
-					width: 170px;
-					height: 110px;
-				}
+.yt-movie {
+	padding: 10px;
+	height: 140px;
+	.yt-img {
+		float: left;
+		width: 20%;
+		text-align: center;
+		@media screen and (max-width: 480px) {
+			width: 130px;
+		}
+	}
+	.yt-info {
+		float: left;
+		margin-left: 10px;
+		width: 70%;
+		@media screen and (max-width: 480px) {
+			width: 150px;
+		}
+		h3 {
+			margin: 0;
+			color: #007fff;
+			font-size: 16px;
+		}
+		div {
+			color: #767676;
+		}
+		div.channel {
+			margin: 10px 0;
+			span.title {
+				margin-right: 15px;
 			}
-			.yt-info {
-				overflow: hidden;
-				position: relative;
-				h3 {
-					margin: 0;
-					font-size: 16px;
-					max-width: 499px;
-				}
-				div {
-					color: #767676;
-				}
-				div.channel {
-					margin: 10px 0;
-					span.title {
-						margin-right: 15px;
-					}
-				}
+			@media screen and (max-width: 480px) {
+				display: none;
 			}
 		}
-		li.novideo {
-			text-align: center;
-			p {
-				font-size: 16px;
-			}
-		}
+	}
+}
+.novideo {
+	text-align: center;
+	p {
+		font-size: 16px;
 	}
 }
 #trendVideo {
@@ -173,18 +175,26 @@
 	height: 140px;
 	.twicas-img {
 		float: left;
-		border: solid 1px #ddd;
+		width: 20%;
+		text-align: center;
+		@media screen and (max-width: 480px) {
+			width: 130px;
+		}
 		img {
-			width: 200px;
+			width: 120px;
 		}
 	}
 	.twicas-info {
 		float: left;
 		margin-left: 10px;
+		width: 70%;
+		@media screen and (max-width: 480px) {
+			width: 150px;
+		}
 		h3 {
 			margin-top: 10px;
 			color: #007fff;
-			font-size: 20px;
+			font-size: 18px;
 		}
 	}
 }

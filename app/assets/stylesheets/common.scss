@@ -13,6 +13,9 @@ hr {
 #header {
 	padding-left: 0;
 	padding-right: 0;
+	a img {
+		width: 30%;
+	}
 	@media screen and (max-width: 480px) {
 		a img {
 			width: 100%;
@@ -44,7 +47,7 @@ hr {
 	}
 }
 #menu {
-	background-color: #555;
+	background-color: #333;
 	div.container-fluid {
 		max-width: 1248px;
 		ul.menu-list {
@@ -54,6 +57,7 @@ hr {
 				float: left;
 				padding: 10px;
 				width: 20%;
+				border-top: solid 1px #ddd;
 				@media screen and (max-width: 480px) {
 					width: 100%;
 				}
