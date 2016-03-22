@@ -64,7 +64,9 @@ namespace :batch do
 
     ts = Time.now
     con.xquery("SELECT vid,title,trend_date FROM trend_videos WHERE trend_date = ? ORDER BY RAND() LIMIT 1", ts.strftime('%F')).each do |r|
-      client.update("#{ts.strftime('%m月%d日')}のトレンド動画 「#{r['title']}」 http://xtrend.tokyo/home/video?date=#{ts.strftime('%F')}&vid=#{r['vid']} #YouTubeトレンド")
+      open("https://i.ytimg.com/vi/#{r['vid']}/hqdefault.jpg?custom=true&w=320&h=180") do |tmp|
+        client.update_with_media("#{ts.strftime('%-m月%-d日')}のトレンド動画 「#{r['title']}」 http://xtrend.tokyo/home/video?date=#{ts.strftime('%F')}&vid=#{r['vid']} #トレンド動画まとめ", tmp)
+      end
     end
   end
 end
