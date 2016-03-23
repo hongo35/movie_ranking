@@ -5,6 +5,9 @@ hr {
 #contentsWrapper {
 	padding: 15px;
 	background-color: #f7f7f7;
+	@media screen and (max-width: 480px) {
+		padding: 15px 0;
+	}
 }
 #header, #contents {
 	max-width: 1248px;
